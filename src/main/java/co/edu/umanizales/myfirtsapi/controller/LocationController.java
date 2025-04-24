@@ -48,5 +48,9 @@ public class LocationController {
     public List<Location> getLocationsByCapitals(){
         return locationService.getLocations();
     }
+    @GetMapping(path ="/lenght/{lenght}")
+    public List<Location> getLocationsByLenght(int length){
+          return locationService.getLocationsByLenght(length);
+    }
 
 }
