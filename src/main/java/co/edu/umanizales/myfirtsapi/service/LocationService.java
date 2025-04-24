@@ -80,8 +80,9 @@ public class LocationService{
     }@GetMapping(path = "/states")
     public List<Location> getStates(){
         return locations;
-    }@GetMapping(path ="/StatesCode/{StatesCode}")
-    public Location getStatesByCode(String code){
+    }
+    @GetMapping(path ="/StatesCode/{StatesCode}")
+    public Location getStatesByCode(@PathVariable String code){
         return locations.stream().filter(location -> location.getCode().equals(code)).findFirst().orElse(null);
     }
     @GetMapping(path = "/capitals")
