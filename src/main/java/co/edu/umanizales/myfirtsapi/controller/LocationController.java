@@ -16,7 +16,6 @@ public class LocationController {
     public LocationController(LocationService locationService) {
         this.locationService = locationService;
     }
-
     @GetMapping
     public List<Location> getlocations(){
         return locationService.getLocations();
@@ -49,4 +48,5 @@ public class LocationController {
     public List<Location> getLocationsByCapitals(){
         return locationService.getLocations();
     }
+
 }
