@@ -9,9 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Seller {
     private String identification;
-    private byte age;
+    private String age;
     private String name;
     private String lastName;
-    private char gender;
+    private String gender;
     private Location city;
 }
