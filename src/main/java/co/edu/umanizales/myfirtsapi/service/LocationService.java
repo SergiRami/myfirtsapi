@@ -62,47 +62,45 @@ public class LocationService {
         }
     }
 
-    @GetMapping(path = "/code/{code}")
+
 // aqui se asigna la ruta del metodo para obtener la localizacion por codigo postal
     public Location getLocationByCode(@PathVariable String code) {
         return locations.stream().filter(location -> location.getCode().equals(code)).findFirst().orElse(null);//aqui retorna de manera filtrada para que se genere la locacion segun el codigo postal
     }
 
-    @GetMapping(path = "/name/{name}")
-// aqui se asigna la ruta del metodo para obtener la localizacion por nombre de la ciudad
+
+
     public Location getLocationByName(@PathVariable String name) {
         return locations.stream().filter(location -> location.getDescription().equals(name)).findFirst().orElse(null);
     }
 
-    @GetMapping(path = "/initialLetter/{initialLetter}")
+
 // aqui se asigna la ruta del metodo para obtener la localizacion por la letra inicial de la ciudad
     public Location getLocationByInitialLetters(@PathVariable String initialLetter) {
         return locations.stream().filter(location -> location.getDescription().equals(initialLetter)).findFirst().orElse(null);//aca retorna y filtra los datos para que se busque por medio de la letra ingresada
     }
 
-    @GetMapping(path = "/stateCode/{stateCode}")
+
 // aqui se asigna la ruta del metodo para obtener la localizacion por codigo de departamento
     public Location getLocationByStateCode(@PathVariable String stateCode) {
         return locations.stream().filter(location -> location.getDescription().equals(stateCode)).findFirst().orElse(null);//aca retorna y filtra los datos para que se busque por medio del codigo de departamento
     }
 
-    @GetMapping(path = "/states")//aqui se genera la ruta para generar la lista de departamentos
+    //aqui se genera la ruta para generar la lista de departamentos
     public List<Location> getStates() {
         return locations; //aqui se retorna a la clase locations para sacar la lista de los departamentos
     }
 
-    @GetMapping(path = "/StatesCode/{StatesCode}")
-//aqui se genera la ruta para filtrar la localizacion de departamentos por codigo
     public Location getStatesByCode(@PathVariable String code) {
         return locations.stream().filter(location -> location.getCode().equals(code)).findFirst().orElse(null);//aqui se hace el filtro para los estados segun el codigo que se ingresa
     }
 
-    @GetMapping(path = "/capitals")//aqui se genera la ruta para generar la lista de capitales
+
     public List<String> getCapitals() {
         return locations.stream().filter(location -> location.getDescription().equals("Capitals")).map(location -> location.getDescription()).collect(Collectors.toList());//aqui se filtra la informacion de las capitales parafiltrarla y generar la lista de las capitales
     }
 
-    @GetMapping(path = "/lenght/{lenght}")
+
     public List<Location> getLocationsByLenght(@PathVariable int length) {
         List<Location> results = new ArrayList<>();
         for (Location location : locations) {
