@@ -12,14 +12,13 @@ import java.util.List;
 @Service
 @Getter
 public class StoreService {
-    @Autowired
+
     private List<Store> stores;
 
     @GetMapping
     public String addStore(Store store) {
         stores.add(store);
         return "Tienda adicionada";
-
     }
 
 
