@@ -65,39 +65,77 @@ public class LocationService {
 
 // aqui se asigna la ruta del metodo para obtener la localizacion por codigo postal
     public Location getLocationByCode(@PathVariable String code) {
-        return locations.stream().filter(location -> location.getCode().equals(code)).findFirst().orElse(null);//aqui retorna de manera filtrada para que se genere la locacion segun el codigo postal
+        for (Location location : locations) {
+            if (location.getCode().equals(code)) {
+                return location;
+            }
+        }
+        return null;
     }
 
 
 
     public Location getLocationByName(@PathVariable String name) {
-        return locations.stream().filter(location -> location.getDescription().equals(name)).findFirst().orElse(null);
+          for (Location location : locations) {
+              if(location.getDescription().equals(name)){
+                  return location;
+              }
+          }
+          return null;
     }
 
 
 // aqui se asigna la ruta del metodo para obtener la localizacion por la letra inicial de la ciudad
     public Location getLocationByInitialLetters(@PathVariable String initialLetter) {
-        return locations.stream().filter(location -> location.getDescription().equals(initialLetter)).findFirst().orElse(null);//aca retorna y filtra los datos para que se busque por medio de la letra ingresada
+        List<Location> InitialLettersArray = new ArrayList<>();
+        for (Location location : locations) {
+            if(location.getDescription().equals(initialLetter)){
+                InitialLettersArray.add(location);
+            }
+        }
+        return InitialLettersArray.get(0);
     }
 
 
 // aqui se asigna la ruta del metodo para obtener la localizacion por codigo de departamento
     public Location getLocationByStateCode(@PathVariable String stateCode) {
-        return locations.stream().filter(location -> location.getDescription().equals(stateCode)).findFirst().orElse(null);//aca retorna y filtra los datos para que se busque por medio del codigo de departamento
+        for (Location location : locations) {
+            if(location.getCode().equals(stateCode)){
+                return location;
+            }
+        }
+        return null;
     }
 
     //aqui se genera la ruta para generar la lista de departamentos
     public List<Location> getStates() {
-        return locations; //aqui se retorna a la clase locations para sacar la lista de los departamentos
+        List<Location> states = new ArrayList<>();
+       for (Location location : locations) {
+           if(location.getCode().length() ==2){
+               states.add(location);
+           }
+       }
+       return states;
     }
 
     public Location getStatesByCode(@PathVariable String code) {
-        return locations.stream().filter(location -> location.getCode().equals(code)).findFirst().orElse(null);//aqui se hace el filtro para los estados segun el codigo que se ingresa
+      for (Location location : locations) {
+          if(location.getCode().equals(code)){
+              return location;
+          }
+      }
+      return null;
     }
 
 
     public List<String> getCapitals() {
-        return locations.stream().filter(location -> location.getDescription().equals("Capitals")).map(location -> location.getDescription()).collect(Collectors.toList());//aqui se filtra la informacion de las capitales parafiltrarla y generar la lista de las capitales
+      List<String> capitals = new ArrayList<>();
+      for (Location location : locations) {
+          if(location.getDescription().length()>0){
+              capitals.add(location.getDescription());
+          }
+      }
+      return capitals;
     }
 
 

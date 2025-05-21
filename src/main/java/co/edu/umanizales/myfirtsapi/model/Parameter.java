@@ -7,12 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
-public class Location {
-    private String code;
-    private String description;
-
-
+public abstract class  Parameter {
+   private String code;
+   private String description;
 }
